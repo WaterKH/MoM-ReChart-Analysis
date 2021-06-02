@@ -93,7 +93,7 @@ namespace MoMMusicAnalysis
 
             for (int i = 0; i < this.TimeShiftCount; ++i)
             {
-                var timeShift = new TimeShift();
+                var timeShift = new TimeShift<FieldLane>();
 
                 timeShift.ProcessTimeShift(musicReader);
 
@@ -403,7 +403,7 @@ namespace MoMMusicAnalysis
                 var timeStr = @$"
     #region Time Shift {i}
     
-    Change Time: {timeShift.ChangeTime}
+    Change Time: {timeShift.HitTime}
     Speed: {timeShift.Speed}
 
     #endregion
