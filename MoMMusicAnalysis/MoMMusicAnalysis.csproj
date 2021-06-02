@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>waterkh</Authors>
+    <Description>1.0.12 - Added Support for MemoryDive + BossBattle
+1.0.11 - FieldLane Enums Update (Thanks Kimpchuu!)
+1.0.10 - Fixed Animation/ Asset Orientation Bug
+1.0.9 - Added Id to Anim Class + misc
+1.0.8 - Merged Animations with Notes and Assets + misc
+1.0.7 -  Added Header + misc
+1.0.6 - Added debug check back
+1.0.5 - Added more FieldModelTypes + Added FieldAssetType
+1.0.4 - Added more FieldModelTypes
+1.0.3 - Added FFs/Unks
+1.0.2 - Added Recompilation of file
+1.0.1 - Added parsing of entire file (Beginner, Standard, Proud)
+1.0.0 - Initial Analysis</Description>
+    <Version>1.0.12</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Field.cs~RFd26e664.TMP" />
+    <None Remove="MusicFile.cs~RFe89458.TMP" />
+    <None Remove="PerformerNote.cs~RFedce1c.TMP" />
+    <None Remove="Song\BossBattle\BossLane.cs~RF305bd06.TMP" />
+    <None Remove="Song\MemoryDive\MemoryNoteType.cs~RF2a46d96.TMP" />
+    <None Remove="Song\PerformerType.cs~RF2d21729.TMP" />
+  </ItemGroup>
+
+</Project>
