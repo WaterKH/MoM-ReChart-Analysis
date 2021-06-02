@@ -4,7 +4,7 @@ using System.IO;
 
 namespace MoMMusicAnalysis
 {
-    public class Song<TNote, TPerformerLane> : ISong where TPerformerLane : Enum
+    public class Song<TNote, TLane> : ISong where TLane : Enum
     {
         public string Name { get; set; }
         public Difficulty Difficulty { get; set; }
@@ -19,8 +19,8 @@ namespace MoMMusicAnalysis
         public int TimeShiftCount { get; set; }
 
         public List<TNote> Notes = new List<TNote>();
-        public List<PerformerNote<TPerformerLane>> PerformerNotes = new List<PerformerNote<TPerformerLane>>();
-        public List<TimeShift> TimeShifts = new List<TimeShift>();
+        public List<PerformerNote<TLane>> PerformerNotes = new List<PerformerNote<TLane>>();
+        public List<TimeShift<TLane>> TimeShifts = new List<TimeShift<TLane>>();
 
         public ISong ProcessSong(FileStream musicReader)
         {
