@@ -9,10 +9,10 @@
         AerialUncommonEnemy = 4,
         MultiHitGroundEnemy = 5,
         MultiHitAerialEnemy = 6,
-        RareEnemyProjectile = 7, // Note Type 2
-        RareEnemy = 7, // Note Type 0
-        Projectile = 8, // Note Type 2
-        ProjectileEnemy = 8, // Note Type 0
+        EnemyShooterProjectile = 7, // Note Type 2
+        EnemyShooter = 7, // Note Type 0
+        AerialEnemyShooterProjectile = 8, // Note Type 2
+        AerialEnemyShooter = 8, // Note Type 0
         JumpingGroundEnemy = 9,
         JumpingAerialEnemy = 10,
         HiddenEnemy = 11, // Shadow is in the ground, (Maybe moving away from the player?)

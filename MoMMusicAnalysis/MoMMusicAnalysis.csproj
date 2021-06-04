@@ -5,7 +5,13 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>waterkh</Authors>
+<<<<<<< Updated upstream
     <Description>1.0.12 - Added Support for MemoryDive + BossBattle
+=======
+    <Description>1.0.14 - Fix to ModelType Enums
+1.0.13 - Merged TimeShifts + DarkZone under Note Class for now
+1.0.12 - Added Support for MemoryDive + BossBattle
+>>>>>>> Stashed changes
 1.0.11 - FieldLane Enums Update (Thanks Kimpchuu!)
 1.0.10 - Fixed Animation/ Asset Orientation Bug
 1.0.9 - Added Id to Anim Class + misc
@@ -18,7 +24,11 @@
 1.0.2 - Added Recompilation of file
 1.0.1 - Added parsing of entire file (Beginner, Standard, Proud)
 1.0.0 - Initial Analysis</Description>
+<<<<<<< Updated upstream
     <Version>1.0.12</Version>
+=======
+    <Version>1.0.14</Version>
+>>>>>>> Stashed changes
   </PropertyGroup>
 
   <ItemGroup>
