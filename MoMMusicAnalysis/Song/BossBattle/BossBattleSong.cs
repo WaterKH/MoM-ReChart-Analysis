@@ -70,7 +70,7 @@ namespace MoMMusicAnalysis
 
             for (int i = 0; i < this.TimeShiftCount; ++i)
             {
-                var timeShift = new TimeShift();
+                var timeShift = new TimeShift<BossLane>();
 
                 timeShift.ProcessTimeShift(musicReader);
 
@@ -228,7 +228,7 @@ namespace MoMMusicAnalysis
                 var timeStr = @$"
     #region Time Shift {i}
     
-    Change Time: {timeShift.ChangeTime}
+    Change Time: {timeShift.HitTime}
     Speed: {timeShift.Speed}
 
     #endregion
@@ -246,7 +246,7 @@ namespace MoMMusicAnalysis
                 var darkZoneStr = @$"
     #region Dark Zone {i}
     
-    Start Time (For Notes): {darkZone.StartTime} ({darkZone.StartTime / 1000.0})
+    Start Time (For Notes): {darkZone.HitTime} ({darkZone.HitTime / 1000.0})
     End Time (For Notes - Start Time For Attack): {darkZone.EndTime} ({darkZone.EndTime / 1000.0})
     End Attack Time (For Attack): {darkZone.EndTime} ({darkZone.EndAttackTime / 1000.0})
     Empty Data: {darkZone.EmptyData}

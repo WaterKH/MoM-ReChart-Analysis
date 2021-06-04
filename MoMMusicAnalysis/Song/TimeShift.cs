@@ -4,16 +4,16 @@ using System.IO;
 
 namespace MoMMusicAnalysis
 {
-    public class TimeShift
+    public class TimeShift<TLane> : Note<TLane>
     {
-        public int ChangeTime { get; set; }
+        //public int StartTime { get; set; }
         public int Speed { get; set; }
 
 
-        public TimeShift ProcessTimeShift(FileStream musicReader)
+        public TimeShift<TLane> ProcessTimeShift(FileStream musicReader)
         {
-            // Get Change Time
-            this.ChangeTime = BitConverter.ToInt32(musicReader.ReadBytesFromFileStream(4).ToArray());
+            // Get Hit Time - Using HitTime to be consistent
+            this.HitTime = BitConverter.ToInt32(musicReader.ReadBytesFromFileStream(4).ToArray());
 
             // Get Speed?
             this.Speed = BitConverter.ToInt32(musicReader.ReadBytesFromFileStream(4).ToArray());
@@ -26,7 +26,7 @@ namespace MoMMusicAnalysis
         {
             var data = new List<byte>();
 
-            data.AddRange(BitConverter.GetBytes(this.ChangeTime));
+            data.AddRange(BitConverter.GetBytes(this.HitTime));
             data.AddRange(BitConverter.GetBytes(this.Speed));
 
             return data;
