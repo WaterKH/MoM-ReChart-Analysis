@@ -9,7 +9,7 @@ namespace MoMMusicAnalysis
     {
         static void Main(string[] args)
         {
-            var files = new List<string>();//Directory.GetFiles("decompressed_music");
+            var files = Directory.GetFiles("decompressed_music");
             var songProcessor = new SongProcessor();
 
             foreach (var file in files)
@@ -22,47 +22,38 @@ namespace MoMMusicAnalysis
 
                 foreach(var (pos, song) in temp.SongPositions)
                 {
-                    var fbSong = ((FieldBattleSong)song);
+                    try
+                    {
+                        var fbSong = ((FieldBattleSong)song).TimeShifts;
+                        fbSong.ForEach(x => str += x.Speed + " ");
+                        continue;
+                    }
+                    catch(Exception e)
+                    {
+
+                    }
                     
-                    var notes = fbSong.Notes;
-                    foreach(var note in notes)
+                    try
                     {
-                        if (note.Unk1 != 0) str += $"Unk1: {note.Unk1} - ";
-                        if (note.Unk2 != 0) str += $"Unk2: {note.Unk2} - ";
-                        if (note.Unk3 != 0) str += $"Unk3: {note.Unk3} - ";
-                        if (note.Unk4 != 0) str += $"Unk4: {note.Unk4} - ";
-                        if (note.Unk5 != 0) str += $"Unk5: {note.Unk5} - ";
-                        if (note.Unk6 != 0) str += $"Unk6: {note.Unk6} - ";
+                        var mdSong = ((MemoryDiveSong)song).TimeShifts;
+                        mdSong.ForEach(x => str += x.Speed + " ");
+                        continue;
                     }
-
-                    var enemies = fbSong.FieldAnimations;
-                    foreach (var enemy in enemies)
+                    catch (Exception e)
                     {
-                        if (enemy.Unk1 != 0) str += $"Unk1: {enemy.Unk1} - ";
-                        if (enemy.Unk2 != 0) str += $"Unk2: {enemy.Unk2} - ";
-                        if (enemy.Unk3 != 0) str += $"Unk3: {enemy.Unk3} - ";
-                        if (enemy.Unk4 != 0) str += $"Unk4: {enemy.Unk4} - ";
-                        if (enemy.Unk5 != 0) str += $"Unk5: {enemy.Unk5} - ";
-                        if (enemy.Unk6 != 0) str += $"Unk6: {enemy.Unk6} - ";
-                        if (enemy.Unk7 != 0) str += $"Unk7: {enemy.Unk7} - ";
-                        if (enemy.Unk8 != 0) str += $"Unk8: {enemy.Unk8} - ";
+
                     }
-
-                    var assets = fbSong.FieldAssets;
-                    foreach (var asset in assets)
+                    
+                    try
                     {
-                        if (asset.Unk1 != 0) str += $"Unk1: {asset.Unk1} - ";
-                        if (asset.Unk2 != 0) str += $"Unk2: {asset.Unk2} - ";
-                        if (asset.Unk3 != 0) str += $"Unk3: {asset.Unk3} - ";
-                        if (asset.Unk4 != 0) str += $"Unk4: {asset.Unk4} - ";
-                        if (asset.Unk5 != 0) str += $"Unk5: {asset.Unk5} - ";
-                        if (asset.Unk6 != 0) str += $"Unk6: {asset.Unk6} - ";
-                        if (asset.Unk7 != 0) str += $"Unk7: {asset.Unk7} - ";
-                        if (asset.Unk8 != 0) str += $"Unk8: {asset.Unk8} - ";
+                        var bbSong = ((BossBattleSong)song).TimeShifts;
+                        bbSong.ForEach(x => str += x.Speed + " ");
+                        
+                        continue;
+                    }
+                    catch (Exception e)
+                    {
 
-                        if (asset.FF1 != -1) str += $"FF1: {asset.FF1} - ";
-                        if (asset.FF2 != -1) str += $"FF2: {asset.FF2} - ";
-                        if (asset.FF3 != -1) str += $"FF3: {asset.FF3} - ";
                     }
                 }
 

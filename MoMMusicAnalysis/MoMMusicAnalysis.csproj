@@ -5,7 +5,8 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>waterkh</Authors>
-    <Description>1.0.14 - Fix to ModelType Enums
+    <Description>1.0.15 - Fix to AssetModelType Enums
+1.0.14 - Fix to ModelType Enums
 1.0.13 - Merged TimeShifts + DarkZone under Note Class for now
 1.0.12 - Added Support for MemoryDive + BossBattle
 1.0.11 - FieldLane Enums Update (Thanks Kimpchuu!)
