@@ -21,7 +21,7 @@
 1.0.2 - Added Recompilation of file
 1.0.1 - Added parsing of entire file (Beginner, Standard, Proud)
 1.0.0 - Initial Analysis</Description>
-    <Version>1.0.14</Version>
+    <Version>1.0.15</Version>
   </PropertyGroup>
 
   <ItemGroup>
