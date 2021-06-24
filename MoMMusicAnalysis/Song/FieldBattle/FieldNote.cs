@@ -66,10 +66,18 @@ namespace MoMMusicAnalysis
             // Get Rest
             this.Unk1 = BitConverter.ToInt32(musicReader.ReadBytesFromFileStream(4).ToArray());
             this.Unk2 = BitConverter.ToInt32(musicReader.ReadBytesFromFileStream(4).ToArray());
-            this.Unk3 = BitConverter.ToInt32(musicReader.ReadBytesFromFileStream(4).ToArray());
+            this.Unk3 = BitConverter.ToInt32(musicReader.ReadBytesFromFileStream(4).ToArray()); // Model switch for Barrels/ Crates
             this.Unk4 = BitConverter.ToInt32(musicReader.ReadBytesFromFileStream(4).ToArray());
             this.Unk5 = BitConverter.ToInt32(musicReader.ReadBytesFromFileStream(4).ToArray());
             this.Unk6 = BitConverter.ToInt32(musicReader.ReadBytesFromFileStream(4).ToArray());
+
+            // Model Checks
+            if (this.ModelType == FieldModelType.EnemyShooterProjectile && this.NoteType == 0)
+                this.ModelType = FieldModelType.EnemyShooter;
+            else if (this.ModelType == FieldModelType.AerialEnemyShooterProjectile && this.NoteType == 0)
+                this.ModelType = FieldModelType.AerialEnemyShooter;
+            else if (this.ModelType == FieldModelType.Barrel && this.Unk3 == 1)
+                this.ModelType = FieldModelType.Crate;
 
             return this;
         }
