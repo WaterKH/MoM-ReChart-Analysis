@@ -225,7 +225,7 @@ namespace MoMMusicAnalysis
 
             var formattedString = header + notes + performerNotes + timeShifts;
 
-            File.AppendAllText($"{destination}-{this.Name}.cs", formattedString);
+            File.AppendAllText($"{destination}-{this.Name.Split('\\')[^1]}.cs", formattedString);
         }
     }
 }
