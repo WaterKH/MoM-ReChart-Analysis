@@ -158,9 +158,9 @@ namespace MoMMusicAnalysis
     Hit Time: {note.HitTime} ({note.HitTime / 1000.0})
     Lane: {note.Lane}
     Aerial Flag: {note.AerialFlag}
-    Swipe Direction: {note.SwipeDirection} (degrees)
-    Start Hold Note: {note.StartHoldNote}
-    End Hole Note: {note.EndHoldNote}
+    Swipe Direction: {note.SwipeDirection}
+    Start Hold Note: {note.StartHoldNoteIndex}
+    End Hold Note: {note.EndHoldNoteIndex}
     Unk FF: {note.UnkFF}
     Unk1: {note.Unk1}
     Unk2: {note.Unk2}

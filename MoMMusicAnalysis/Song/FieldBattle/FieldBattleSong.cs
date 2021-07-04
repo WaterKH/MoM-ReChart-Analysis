@@ -292,7 +292,7 @@ namespace MoMMusicAnalysis
     Party Flag: {fieldNote.PartyFlag}
     Unk1: {fieldNote.Unk1}
     Unk2: {fieldNote.Unk2}
-    Unk3: {fieldNote.Unk3}
+    Unk3: {fieldNote.Unk3} (Model Alt)
     Unk4: {fieldNote.Unk4}
     Unk5: {fieldNote.Unk5}
     Unk6: {fieldNote.Unk6}
