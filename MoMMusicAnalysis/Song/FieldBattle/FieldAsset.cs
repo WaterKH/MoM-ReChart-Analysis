@@ -10,9 +10,9 @@ namespace MoMMusicAnalysis
         public bool JumpFlag { get; set; }
         public int Unk1 { get; set; } // Always 1 if the ModelType is 13? 
         public int AnimationReference { get; set; }
-        public int FF1 { get; set; }
-        public int FF2 { get; set; }
-        public int FF3 { get; set; }
+        public int FF1 { get; set; } = -1;
+        public int FF2 { get; set; } = -1;
+        public int FF3 { get; set; } = -1;
         public FieldAssetType ModelType { get; set; }
         public int Unk2 { get; set; }
         public int Unk3 { get; set; }

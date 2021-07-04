@@ -137,7 +137,7 @@ namespace MoMMusicAnalysis
                 }
             }
 
-            this.FieldAnimations.Clear(); // We don't need the animations list anymore since they are paired with the notes and assets right?
+            //this.FieldAnimations.Clear(); // We don't need the animations list anymore since they are paired with the notes and assets right?
 
             //var count = this.FieldNotes.Select(x => x.Animations.Count).Sum() + this.FieldAssets.Select(x => x.Animations.Count).Sum();
 
@@ -187,7 +187,7 @@ namespace MoMMusicAnalysis
             var anims = this.Notes.SelectMany(x => x.Animations).Concat(this.FieldAssets.SelectMany(x => x.Animations));
 
             // Recompile All Field Animations
-            foreach (var anim in anims.OrderBy(x => x.AnimationEndTime))
+            foreach (var anim in anims.OrderBy(x => x.AnimationEndTime).ThenBy(x => x.AnimationStartTime))
                 data.AddRange(anim.RecompileNote());
 
             // Recompile All Field Assets
@@ -221,6 +221,10 @@ namespace MoMMusicAnalysis
         // TODO Move string construction to subclasses
         public void WriteToFile(string destination)
         {
+            if (File.Exists($"{destination}-{this.Name.Split('\\')[^1]}.cs"))
+                File.Delete($"{destination}-{this.Name.Split('\\')[^1]}.cs");
+            
+
             var header = @$"
     Name: {this.Name}
     Difficulty: {this.Difficulty}
@@ -279,9 +283,9 @@ namespace MoMMusicAnalysis
     Lane: {fieldNote.Lane}
     Aerial Flag: {fieldNote.AerialFlag}
     Animation Reference: {fieldNote.AnimationReference}
-    Projectile Origin Note: {fieldNote.ProjectileOriginNote}
-    Previous Enemy Note: {fieldNote.PreviousEnemyNote}
-    Next Enemy Note: {fieldNote.NextEnemyNote}
+    Projectile Origin Note: {fieldNote.ProjectileOriginNoteIndex}
+    Previous Enemy Note: {fieldNote.PreviousEnemyNoteIndex}
+    Next Enemy Note: {fieldNote.NextEnemyNoteIndex}
     Aerial And Crystal Counter: {fieldNote.AerialAndCrystalCounter}
     Model Type: {fieldNote.ModelType}
     Star Flag: {fieldNote.StarFlag}
@@ -415,7 +419,7 @@ namespace MoMMusicAnalysis
 
             var formattedString = header + fieldNotes + fieldAssets + performerNotes + timeShifts;
 
-            File.AppendAllText($"{destination}-{this.Name}.cs", formattedString);
+            File.AppendAllText($"{destination}-{this.Name.Split('\\')[^1]}.cs", formattedString);
         }
     }
 }

@@ -148,6 +148,10 @@ namespace MoMMusicAnalysis
         // TODO Move string construction to subclasses
         public void WriteToFile(string destination)
         {
+            if (File.Exists($"{destination}-{this.Name.Split('\\')[^1]}.cs"))
+                File.Delete($"{destination}-{this.Name.Split('\\')[^1]}.cs");
+
+
             var header = @$"
     Name: {this.Name}
     Difficulty: {this.Difficulty}

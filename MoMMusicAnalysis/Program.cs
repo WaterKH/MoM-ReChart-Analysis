@@ -28,7 +28,7 @@ namespace MoMMusicAnalysis
                         fbSong.ForEach(x => str += x.Speed + " ");
                         continue;
                     }
-                    catch(Exception e)
+                    catch(Exception)
                     {
 
                     }
@@ -39,7 +39,7 @@ namespace MoMMusicAnalysis
                         mdSong.ForEach(x => str += x.Speed + " ");
                         continue;
                     }
-                    catch (Exception e)
+                    catch (Exception)
                     {
 
                     }
@@ -51,7 +51,7 @@ namespace MoMMusicAnalysis
                         
                         continue;
                     }
-                    catch (Exception e)
+                    catch (Exception)
                     {
 
                     }

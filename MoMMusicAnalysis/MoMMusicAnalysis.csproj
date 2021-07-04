@@ -5,7 +5,14 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>waterkh</Authors>
-    <Description>1.0.16 - Fix to model switching
+    <Description>1.1.0 - Initial Release of 1.1.0 / Misc Changes / Debug Remove File
+1.0.22 - Overrides for ToString / Added Prev/Next Note Objects for Multiple Classes
+1.0.21 - Override FieldNote ToString
+1.0.20 - Added Prev/Next Note Objects
+1.0.19 - Added AssetType Enum
+1.0.18 - Added defaults to Asset FFs
+1.0.17 - Fix to Debug File Save
+1.0.16 - Fix to model switching
 1.0.15 - Fix to AssetModelType Enums
 1.0.14 - Fix to ModelType Enums
 1.0.13 - Merged TimeShifts + DarkZone under Note Class for now
@@ -22,7 +29,7 @@
 1.0.2 - Added Recompilation of file
 1.0.1 - Added parsing of entire file (Beginner, Standard, Proud)
 1.0.0 - Initial Analysis</Description>
-    <Version>1.0.16</Version>
+    <Version>1.1.0</Version>
   </PropertyGroup>
 
   <ItemGroup>

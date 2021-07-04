@@ -9,15 +9,18 @@ namespace MoMMusicAnalysis
         public FieldModelType ModelType { get; set; }
         public int AnimationReference { get; set; }
         public bool AerialFlag { get; set; } = false;
-        public int ProjectileOriginNote { get; set; } = -1;
-        public int PreviousEnemyNote { get; set; } = -1;
-        public int NextEnemyNote { get; set; } = -1;
+        public int ProjectileOriginNoteIndex { get; set; } = -1;
+        public FieldNote ProjectileOriginNote { get; set; } = null;
+        public int PreviousEnemyNoteIndex { get; set; } = -1;
+        public FieldNote PreviousEnemyNote { get; set; } = null;
+        public int NextEnemyNoteIndex { get; set; } = -1;
+        public FieldNote NextEnemyNote { get; set; } = null;
         public int AerialAndCrystalCounter { get; set; } = -1;
         public bool StarFlag { get; set; } = false;
         public bool PartyFlag { get; set; } = false;
         public int Unk1 { get; set; }
         public int Unk2 { get; set; }
-        public int Unk3 { get; set; }
+        public int Unk3 { get; set; } // Model switch for Barrels/ Crates
         public int Unk4 { get; set; }
         public int Unk5 { get; set; }
         public int Unk6 { get; set; }
@@ -43,13 +46,13 @@ namespace MoMMusicAnalysis
             this.AnimationReference = BitConverter.ToInt32(musicReader.ReadBytesFromFileStream(4).ToArray());
 
             // Get Projectile's Origin Note Number
-            this.ProjectileOriginNote = BitConverter.ToInt32(musicReader.ReadBytesFromFileStream(4).ToArray());
+            this.ProjectileOriginNoteIndex = BitConverter.ToInt32(musicReader.ReadBytesFromFileStream(4).ToArray());
 
             // Get Previous Enemy Note (In Chain)
-            this.PreviousEnemyNote = BitConverter.ToInt32(musicReader.ReadBytesFromFileStream(4).ToArray());
+            this.PreviousEnemyNoteIndex = BitConverter.ToInt32(musicReader.ReadBytesFromFileStream(4).ToArray());
 
             // Get Next Enemy Note (In Chain)
-            this.NextEnemyNote = BitConverter.ToInt32(musicReader.ReadBytesFromFileStream(4).ToArray());
+            this.NextEnemyNoteIndex = BitConverter.ToInt32(musicReader.ReadBytesFromFileStream(4).ToArray());
 
             // Get Aerial & Crystal Special Counter
             this.AerialAndCrystalCounter = BitConverter.ToInt32(musicReader.ReadBytesFromFileStream(4).ToArray());
@@ -91,9 +94,9 @@ namespace MoMMusicAnalysis
             data.AddRange(BitConverter.GetBytes((int)this.Lane));
             data.AddRange(BitConverter.GetBytes(this.AerialFlag ? 1 : 0));
             data.AddRange(BitConverter.GetBytes(this.AnimationReference));
-            data.AddRange(BitConverter.GetBytes(this.ProjectileOriginNote));
-            data.AddRange(BitConverter.GetBytes(this.PreviousEnemyNote));
-            data.AddRange(BitConverter.GetBytes(this.NextEnemyNote));
+            data.AddRange(BitConverter.GetBytes(this.ProjectileOriginNoteIndex));
+            data.AddRange(BitConverter.GetBytes(this.PreviousEnemyNoteIndex));
+            data.AddRange(BitConverter.GetBytes(this.NextEnemyNoteIndex));
             data.AddRange(BitConverter.GetBytes(this.AerialAndCrystalCounter));
             data.AddRange(BitConverter.GetBytes((int)this.ModelType));
             data.AddRange(BitConverter.GetBytes(this.StarFlag ? 1 : 0));
@@ -106,6 +109,11 @@ namespace MoMMusicAnalysis
             data.AddRange(BitConverter.GetBytes(this.Unk6));
 
             return data;
+        }
+
+        public override string ToString()
+        {
+            return $"Note: {this.HitTime} Lane: {this.Lane}";
         }
     }
 }

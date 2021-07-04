@@ -10,8 +10,10 @@ namespace MoMMusicAnalysis
         public BossNoteType BossNoteType { get; set; }
         public bool AerialFlag { get; set; } // Always true
         public SwipeType SwipeDirection { get; set; } // Can this be used to also modify Red Note positions?
-        public int StartHoldNote { get; set; }
-        public int EndHoldNote { get; set; }
+        public int StartHoldNoteIndex { get; set; }
+        public BossNote StartHoldNote { get; set; }
+        public int EndHoldNoteIndex { get; set; }
+        public BossNote EndHoldNote { get; set; }
         public int UnkFF { get; set; }
         public int Unk1 { get; set; }
         public int Unk2 { get; set; }
@@ -41,10 +43,10 @@ namespace MoMMusicAnalysis
             this.SwipeDirection = (SwipeType)BitConverter.ToInt32(musicReader.ReadBytesFromFileStream(4).ToArray());
 
             // Get Start Hold Note
-            this.StartHoldNote = BitConverter.ToInt32(musicReader.ReadBytesFromFileStream(4).ToArray());
+            this.StartHoldNoteIndex = BitConverter.ToInt32(musicReader.ReadBytesFromFileStream(4).ToArray());
 
             // Get End Hold Note
-            this.EndHoldNote = BitConverter.ToInt32(musicReader.ReadBytesFromFileStream(4).ToArray());
+            this.EndHoldNoteIndex = BitConverter.ToInt32(musicReader.ReadBytesFromFileStream(4).ToArray());
 
             // Get UnkFF
             this.UnkFF = BitConverter.ToInt32(musicReader.ReadBytesFromFileStream(4).ToArray());
@@ -71,8 +73,8 @@ namespace MoMMusicAnalysis
             data.AddRange(BitConverter.GetBytes((int)this.Lane));
             data.AddRange(BitConverter.GetBytes(this.AerialFlag ? 1 : 0));
             data.AddRange(BitConverter.GetBytes((int)this.SwipeDirection));
-            data.AddRange(BitConverter.GetBytes(this.StartHoldNote));
-            data.AddRange(BitConverter.GetBytes(this.EndHoldNote));
+            data.AddRange(BitConverter.GetBytes(this.StartHoldNoteIndex));
+            data.AddRange(BitConverter.GetBytes(this.EndHoldNoteIndex));
             data.AddRange(BitConverter.GetBytes(this.UnkFF));
             data.AddRange(BitConverter.GetBytes(this.Unk1));
             data.AddRange(BitConverter.GetBytes(this.Unk2));
@@ -84,6 +86,11 @@ namespace MoMMusicAnalysis
             data.AddRange(BitConverter.GetBytes(this.Unk8));
 
             return data;
+        }
+
+        public override string ToString()
+        {
+            return $"Note: {this.HitTime} Lane: {this.Lane}";
         }
     }
 }
