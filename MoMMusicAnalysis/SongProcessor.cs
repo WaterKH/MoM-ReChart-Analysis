@@ -9,8 +9,8 @@ namespace MoMMusicAnalysis
         // TODO Move this up a layer - Want to process the file so we can package it back up and send it back
         public MusicFile ProcessSong(string fileName, bool debug = false)
         {
-            if (File.Exists($"TEST-{fileName}.cs"))
-                File.Delete($"TEST-{fileName}.cs");
+            if (File.Exists($"TEST-{fileName.Split('\\')[^1]}.cs"))
+                File.Delete($"TEST-{fileName.Split('\\')[^1]}.cs");
 
             using var musicReader = File.OpenRead(fileName);
             var musicFile = new MusicFile
