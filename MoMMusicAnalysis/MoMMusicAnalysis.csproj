@@ -5,7 +5,8 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>waterkh</Authors>
-    <Description>1.1.2 - Fix to Debug Values
+    <Description>1.1.3 - Fixed only 1 difficulty
+1.1.2 - Fix to Debug Values
 1.1.1 - Fix to Debug Path
 1.1.0 - Initial Release of 1.1.0 / Misc Changes / Debug Remove File
 1.0.22 - Overrides for ToString / Added Prev/Next Note Objects for Multiple Classes
@@ -31,7 +32,7 @@
 1.0.2 - Added Recompilation of file
 1.0.1 - Added parsing of entire file (Beginner, Standard, Proud)
 1.0.0 - Initial Analysis</Description>
-    <Version>1.1.2</Version>
+    <Version>1.1.3</Version>
   </PropertyGroup>
 
   <ItemGroup>
