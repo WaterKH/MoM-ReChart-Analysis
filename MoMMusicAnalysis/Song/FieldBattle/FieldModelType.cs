@@ -1,6 +1,6 @@
 ﻿namespace MoMMusicAnalysis
 {
-    public enum FieldModelType // TODO Take a look at this, things aren't lining up??~~
+    public enum FieldModelType 
     {
         None = 0,
         CommonEnemy = 1,
@@ -21,6 +21,7 @@
         CrystalEnemyCenter = 14, // Note Type 1, Lane Center?
         GlideNote = 15, // Note Type 3
         Barrel = 16, // Note Type 4
-        Crate = 16 // Note Type 4, Bytes 9 - 12 = 01 00 00 00 
+        Crate = 16, // Note Type 4, Bytes 9 - 12 = 01 00 00 00 
+        CrystalTeamHeal = 18 // Note Type 1
     }
 }

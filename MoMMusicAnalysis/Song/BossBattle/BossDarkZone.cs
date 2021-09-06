@@ -40,5 +40,10 @@ namespace MoMMusicAnalysis
 
             return data;
         }
+
+        public BossDarkZone Copy()
+        {
+            return (BossDarkZone)MemberwiseClone();
+        }
     }
 }

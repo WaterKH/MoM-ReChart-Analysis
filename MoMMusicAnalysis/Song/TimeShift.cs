@@ -31,5 +31,10 @@ namespace MoMMusicAnalysis
 
             return data;
         }
+
+        public TimeShift<TLane> Copy()
+        {
+            return (TimeShift<TLane>)MemberwiseClone();
+        }
     }
 }

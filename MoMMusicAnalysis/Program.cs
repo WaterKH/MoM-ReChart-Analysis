@@ -9,6 +9,47 @@ namespace MoMMusicAnalysis
     {
         static void Main(string[] args)
         {
+            //var dataPath = @"D:\EpicGames\KH_MoM\KINGDOM HEARTS Melody of Memory_Data\StreamingAssets\Data\SaveDatabase";
+            //var passwordPath = @"D:\EpicGames\KH_MoM\KINGDOM HEARTS Melody of Memory_Data\StreamingAssets\Data\";
+
+            //new SaveProcessor().ProcessSaveData(dataPath, true);
+            //new SaveProcessor().Test();
+
+            using var musicReader = File.OpenRead("commonlanguages");
+            
+            var header = new TextAssetHeader().ProcessHeader(musicReader);
+
+            musicReader.ReadBytesFromFileStream(0x138);
+
+            //foreach(var section in header.Sections.OrderBy(x => x.EmptyData))
+            //{  
+            //}
+            
+            List<TextAsset> textAssets = new List<TextAsset>();
+
+            try
+            {
+                while (true)
+                {
+                    textAssets.Add(new TextAsset().Process(musicReader));
+                }
+            }
+            catch (Exception e)
+            {
+
+            }
+
+            if (File.Exists("commonlanguage.cs"))
+                File.Delete("commonlanguage.cs");
+
+            foreach (var asset in textAssets)
+            {
+                asset.WriteToFile("commonlanguage");
+            }
+        }
+
+        public static void FileAnalysis()
+        {
             var files = Directory.GetFiles("decompressed_music");
             var songProcessor = new SongProcessor();
 
@@ -20,7 +61,7 @@ namespace MoMMusicAnalysis
 
                 if (temp == null) continue;
 
-                foreach(var (pos, song) in temp.SongPositions)
+                foreach (var (pos, song) in temp.SongPositions)
                 {
                     try
                     {
@@ -28,11 +69,11 @@ namespace MoMMusicAnalysis
                         fbSong.ForEach(x => str += x.Speed + " ");
                         continue;
                     }
-                    catch(Exception)
+                    catch (Exception)
                     {
 
                     }
-                    
+
                     try
                     {
                         var mdSong = ((MemoryDiveSong)song).TimeShifts;
@@ -43,12 +84,12 @@ namespace MoMMusicAnalysis
                     {
 
                     }
-                    
+
                     try
                     {
                         var bbSong = ((BossBattleSong)song).TimeShifts;
                         bbSong.ForEach(x => str += x.Speed + " ");
-                        
+
                         continue;
                     }
                     catch (Exception)
