@@ -79,5 +79,10 @@ namespace MoMMusicAnalysis
 
             return data;
         }
+
+        public FieldAnimation Copy()
+        {
+            return (FieldAnimation)MemberwiseClone();
+        }
     }
 }

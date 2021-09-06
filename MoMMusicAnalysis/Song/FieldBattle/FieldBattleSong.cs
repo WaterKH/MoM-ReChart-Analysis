@@ -162,6 +162,8 @@ namespace MoMMusicAnalysis
         {
             var data = new List<byte>();
 
+            var anims = this.Notes.SelectMany(x => x.Animations).Concat(this.FieldAssets.SelectMany(x => x.Animations));
+
             data.AddRange(BitConverter.GetBytes(0x10));
 
             // Recompile Header
@@ -174,17 +176,15 @@ namespace MoMMusicAnalysis
             data.AddRange(BitConverter.GetBytes(this.Unk2));
             data.AddRange(BitConverter.GetBytes(this.Unk3));
             data.AddRange(BitConverter.GetBytes(this.Unk4));
-            data.AddRange(BitConverter.GetBytes(this.NoteCount));
-            data.AddRange(BitConverter.GetBytes(this.AnimationCount));
-            data.AddRange(BitConverter.GetBytes(this.AssetCount));
-            data.AddRange(BitConverter.GetBytes(this.PerformerCount));
-            data.AddRange(BitConverter.GetBytes(this.TimeShiftCount));
+            data.AddRange(BitConverter.GetBytes(this.Notes.Count));
+            data.AddRange(BitConverter.GetBytes(anims.ToList().Count));
+            data.AddRange(BitConverter.GetBytes(this.FieldAssets.Count));
+            data.AddRange(BitConverter.GetBytes(this.PerformerNotes.Count));
+            data.AddRange(BitConverter.GetBytes(this.TimeShifts.Count));
 
             // Recompile All Field Notes
             foreach(var note in this.Notes.OrderBy(x => x.HitTime))
                 data.AddRange(note.RecompileNote());
-
-            var anims = this.Notes.SelectMany(x => x.Animations).Concat(this.FieldAssets.SelectMany(x => x.Animations));
 
             // Recompile All Field Animations
             foreach (var anim in anims.OrderBy(x => x.AnimationEndTime).ThenBy(x => x.AnimationStartTime))

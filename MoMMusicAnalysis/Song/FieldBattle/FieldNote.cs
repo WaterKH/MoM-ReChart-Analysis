@@ -115,5 +115,10 @@ namespace MoMMusicAnalysis
         {
             return $"Note: {this.HitTime} Lane: {this.Lane}";
         }
+
+        public FieldNote Copy()
+        {
+            return (FieldNote)MemberwiseClone();
+        }
     }
 }

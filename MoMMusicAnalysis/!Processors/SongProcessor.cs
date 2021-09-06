@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SevenZip.Compression.LZMA;
+using System;
 using System.Collections.Generic;
 using System.IO;
 
@@ -12,7 +13,24 @@ namespace MoMMusicAnalysis
             if (File.Exists($"TEST-{fileName.Split('\\')[^1]}.cs"))
                 File.Delete($"TEST-{fileName.Split('\\')[^1]}.cs");
 
-            using var musicReader = File.OpenRead(fileName);
+            var newFileName = $"{fileName}.decomp";
+            if (!File.Exists(newFileName))
+            {
+                try
+                {
+                    using var initialMusicReader = File.OpenRead(fileName);
+                    using var tempReader = Decompress(initialMusicReader);
+
+                    tempReader.WriteTo(File.OpenWrite(newFileName));
+                }
+                catch (Exception e)
+                {
+
+                }
+            }
+
+            using var musicReader = File.OpenRead(newFileName);
+
             var musicFile = new MusicFile
             {
                 FileName = fileName,
@@ -114,6 +132,32 @@ namespace MoMMusicAnalysis
                 SongType.MemoryDive => new MemoryDiveSong(difficulty, length, songType),
                 _ => null,
             };
+        }
+
+        public static MemoryStream Decompress(FileStream inStream)
+        {
+            var decoder = new Decoder();
+
+            var properties = new byte[5];
+            if (inStream.Read(properties, 0, 5) != 5)
+                throw (new Exception("input .lzma is too short"));
+            decoder.SetDecoderProperties(properties);
+
+            long outSize = 0;
+            for (var i = 0; i < 8; i++)
+            {
+                var v = inStream.ReadByte();
+                if (v < 0)
+                    break;
+                outSize |= ((long)(byte)v) << (8 * i);
+            }
+            var compressedSize = inStream.Length - inStream.Position;
+
+            var outStream = new MemoryStream();
+            decoder.Code(inStream, outStream, compressedSize, outSize, null);
+            outStream.Flush();
+            outStream.Position = 0;
+            return outStream;
         }
     }
 }

@@ -77,5 +77,10 @@ namespace MoMMusicAnalysis
 
             return data;
         }
+
+        public PerformerNote<TPerformerLane> Copy()
+        {
+            return (PerformerNote<TPerformerLane>)MemberwiseClone();
+        }
     }
 }

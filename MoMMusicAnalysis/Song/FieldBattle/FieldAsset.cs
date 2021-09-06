@@ -92,5 +92,10 @@ namespace MoMMusicAnalysis
 
             return data;
         }
+
+        public FieldAsset Copy()
+        {
+            return (FieldAsset)MemberwiseClone();
+        }
     }
 }

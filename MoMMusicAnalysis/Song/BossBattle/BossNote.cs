@@ -92,5 +92,10 @@ namespace MoMMusicAnalysis
         {
             return $"Note: {this.HitTime} Lane: {this.Lane}";
         }
+
+        public BossNote Copy()
+        {
+            return (BossNote)MemberwiseClone();
+        }
     }
 }
